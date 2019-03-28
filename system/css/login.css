@@ -1,0 +1,11 @@
+.login-box{
+    margin: 100px auto;
+    width: 500px;
+}
+.title{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.register{
+    margin-left: 10px;
+}

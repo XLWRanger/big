@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>购物车</title>
+		<link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/shoppingCar.css" />
+		<script src="../libs/jquery/jquery-3.2.1.js"></script>
+		<script src="../libs/bootstrap/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid nav-box">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button
+		        type="button"
+		        class="navbar-toggle collapsed"
+		        data-toggle="collapse"
+		        data-target="#bs-example-navbar-collapse-1"
+		        aria-expanded="false"
+		      >
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="/day25/system/">大西瓜货物管理系统</a>
+		    </div>
+		
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li>
+		          <a href="../index.html"
+		            >首页 <span class="sr-only">(current)</span></a
+		          >
+		        </li>
+		        <li class="carBox active"><a href="html/shoppingCar.html">购物车<span id="number">0</span></a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right" id="before-login">
+		        <li><a href="login.html">登录</a></li>
+		        <li><a href="register.html">注册</a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right after-login" id="after-login">
+		        <li>
+		          <a href="javascript:;">欢迎您！<span id="username">name</span></a>
+		        </li>
+		        <li>
+		          <a href="javascript:;" id="exit">退出</a>
+		        </li>
+		      </ul>
+		    </div>
+		    <!-- /.navbar-collapse -->
+		  </div>
+		  <!-- /.container-fluid -->
+		</nav>
+		<table class="table table-box" id="table">
+			<thead>
+			  <tr class="first">
+					<th>全选<input type="checkbox" id="checkAll" class="checkAll" checked="checked"></th>
+			    <th>编号</th>
+			    <th>商品名称</th>
+			    <th>商品价格</th>
+			    <th>数量</th>
+			  </tr>
+			</thead>
+			<tbody id="tbody">
+			  <!-- <tr>
+			    <td>1</td>
+			    <td><span>大西瓜</span></td>
+			    <td><span>100</span></td>
+			    <td>
+					<span>50</span>
+					<input type="text">
+					<div class="wrap">
+						<span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+					</div>
+				</td>
+			  </tr> -->
+			</tbody>
+			<p class="total bg-primary">总计￥<span id="totalMoney">0</span>元</p>
+		</table>
+		<script src="../libs/tools.js"></script>
+		<script src="../js/isLogin.js"></script>
+		<script src="../js/shoppingCar.js"></script>
+	</body>
+</html>

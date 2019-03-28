@@ -1,0 +1,61 @@
+/* 导航栏 */
+.nav-box{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.after-login{
+    display: none;
+}
+/* 模态框 */
+.modal-box{
+    width: 80%;
+    margin: 10px auto 20px;
+}
+/* 货物表格 */
+.table-box{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+tr td:first-child{
+	width: 120px;
+}
+tr td{
+	width: 200px;
+}
+tr td input,tr td .okBtn,tr td .cancelBtn{
+    display: none;
+}
+tr.edit td input,tr.edit td .okBtn,tr.edit td .cancelBtn{
+    display: inline-block;
+}
+tr.edit td span,tr.edit td .editBtn,tr.edit td .delBtn{
+    display: none;
+}
+tr.edit td input{
+	height: 100%;
+	width: 150px;
+}
+/* 分页 */
+.dvPages{
+	text-align: center;
+}
+.after-login{
+	display: none;
+}
+.carBox{
+	position: relative;
+}
+.carBox span{
+	color: #fff;
+	text-align: center;
+	position: absolute;
+	left: 55px;
+	top: 8px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: red;
+	font-size: 12px;
+}

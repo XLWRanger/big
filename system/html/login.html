@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>大西瓜后台管理系统-登录</title>
+    <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+  </head>
+  <body>
+    <form class="form-horizontal login-box">
+      <h2 class="text-primary title">登录</h2>
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="请输入用户名"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label"
+          >密码</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="请输入密码"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label> <input type="checkbox" id="free-login"/>十天免登录</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="button" class="btn btn-primary" id="login">登录</button>
+          <span class="text-primary register"><a href="register.html">没有账号，去注册一个</a></span>
+        </div>
+      </div>
+    </form>
+    <script src="../libs/tools.js"></script>
+    <script src="../js/login.js"></script>
+  </body>
+</html>
