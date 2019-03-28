@@ -7,17 +7,17 @@ var tbody = document.querySelector("#tbody"),
 	checkAll = document.querySelector("#checkAll"),
 	count = info.length,//默认全选
 	totalMoney = document.querySelector("#totalMoney"),
-	number = document.querySelector("#number");
+	displayNum = document.querySelector("#number");
 //购物车的数量显示在页面上,第一次加载时
-number.innerHTML = info.length;		
+displayNum.innerHTML = info.length;		
 //--------------------------------------------------------------------------------------------	
 goodsInfo();
 //获取购物车商品信息
 function goodsInfo(){
-	info = JSON.parse(localStorage.getItem("shoppingCar"));
+	info = JSON.parse(localStorage.getItem("shoppingCar")) || [];
 	// console.log([] == []);//引用类型false
 	if(info.length == 0){
-		document.body.innerHTML = "<h2 class='blank'>购物车为空快,快去购买吧！</h2>";
+		document.body.innerHTML = "<h2 class='blank'><a href='../index.html'>购物车为空快,快去购买吧！</a></h2>";
 		return;
 	}
 	var	str = "";
@@ -57,7 +57,19 @@ table.onclick = function(e){
 	var target = e.target || e.srcElement,
 		tr = target.parentNode.parentNode,
 		id = tr.getAttribute("data-id")*1,
-		checks = Array.from(tbody.querySelectorAll(".check"));//能保证
+		checks = Array.from(tbody.querySelectorAll(".check")),//能保证
+		goodsnum = tr.getAttribute("data-goodsnum"),
+		number = tr.children[4].children[1];
+	console.log(number);
+	//限制输入框的数量，不能超过，库存,同时若用户清空了，还应该恢复为0
+	number.onblur = function(){
+		if(number.value > goodsnum){
+			 number.value = goodsnum;
+			 alert("库存不够了！");
+		}
+		//恢复为0
+		if(number.value == "") number.value = 0;
+	}
 	//span点击事件
 	//编辑按钮
 	if(target.className.includes("editBtn")){
@@ -77,7 +89,7 @@ table.onclick = function(e){
 				}
 			}
 			//购物车里面的数字减一
-			number.innerHTML--;
+			displayNum.innerHTML--;
 			//重新储存
 			localStorage.setItem("shoppingCar",JSON.stringify(info));
 			//变更编号，只需要把当前位置往后的所有商品的编号减一即可
@@ -95,11 +107,21 @@ table.onclick = function(e){
 	//确认按钮
 	if(target.className.includes("okBtn")){
 		tr.className = "";
+		//先判断，再赋值
+		number.onblur = function(){
+			if(number.value > goodsnum){
+				 number.value = goodsnum;
+				 alert("库存不够了！");
+			}
+			//恢复为0
+			if(number.value == "") number.value = 0;
+		}
 		//input赋值给span
-		tr.children[4].children[0].innerHTML = tr.children[4].children[1].value;
+		tr.children[4].children[0].innerHTML = number.value*1;
 		for(var key in info){
 			if(info[key].Id == id){
-				info[key].num = tr.children[4].children[0].innerHTML*1;
+				info[key].num = number.value*1;
+				console.log(info[key].num);
 			}
 		}
 		//重新储存
@@ -147,7 +169,7 @@ table.onclick = function(e){
 	if(target.id === "checkAll"){
 		count = checkAll.checked ? info.length : 0;
 		//购物车上面的数字
-		number.innerHTML = checkAll.checked ? info.length : 0;	
+		displayNum.innerHTML = checkAll.checked ? info.length : 0;	
 		checks.forEach(function(item){
 			item.checked = checkAll.checked;
 		});
@@ -157,7 +179,7 @@ table.onclick = function(e){
 	if(target.className === "check"){
 		count += target.checked ? 1 : -1;
 		//购物车上面的数字
-		number.innerHTML -= target.checked ? -1 : 1 ;	
+		displayNum.innerHTML -= target.checked ? -1 : 1 ;	
 		checkAll.checked = count === checks.length;
 		total();
 	}

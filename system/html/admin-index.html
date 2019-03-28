@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>大西瓜货物管理系统</title>
+    <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/admin-index.css" />
+    <script src="../libs/jquery/jquery-3.2.1.js"></script>
+    <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid nav-box">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="admin-index.html">大西瓜货物管理系统</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="javascript:;"
+                >首页 <span class="sr-only">(current)</span></a
+              >
+            </li>
+						<li>
+						  <a href="../index.html"
+						    >去选购 <span class="sr-only">(current)</span></a
+						  >
+						</li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" id="before-login">
+            <li><a href="login.html">登录</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right after-login" id="after-login">
+            <li>
+              <a href="javascript:;">欢迎您！<span id="username">name</span></a>
+            </li>
+            <li>
+              <a href="javascript:;" id="exit">退出</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <!-- Button trigger modal -->
+    <div class="modal-box">
+      <button
+        type="button"
+        class="btn btn-primary btn-primary"
+        data-toggle="modal"
+        data-target="#myModal"
+      >
+        录入货物
+      </button>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="myModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true" id="close1">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">录入商品</h4>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal login-box">
+                <div class="form-group">
+                  <label for="goodsName" class="col-sm-2 control-label"
+                    >商品名称</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="goodsName"
+                      placeholder="请输入商品名称"
+											autocomplete="off"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="goodsPrice" class="col-sm-2 control-label"
+                    >商品价格</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="goodsPrice"
+                      placeholder="请输入商品价格"
+											autocomplete="off"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="goodsNum" class="col-sm-2 control-label"
+                    >商品数量</label
+                  >
+                  <div class="col-sm-10">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="goodsNum"
+                      placeholder="请输入商品数量"
+											autocomplete="off"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+                id="close2"
+              >
+                关闭
+              </button>
+              <button type="button" class="btn btn-primary" id="save">
+                保存
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		
+    <table class="table table-bordered table-hover table-box">
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>商品名称</th>
+          <th>商品价格</th>
+          <th>库存数量</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <!-- <tr>
+          <td><span>1</span><input type="text" /></td>
+          <td><span>大西瓜</span><input type="text" /></td>
+          <td><span>100</span><input type="text" /></td>
+          <td><span>50</span><input type="text" /></td>
+          <td>
+            <button type="button" class="btn btn-primary btn-xs editBtn">
+              编辑
+            </button>
+            <button type="button" class="btn btn-primary btn-xs delBtn">
+              删除
+            </button>
+            <button type="button" class="btn btn-primary btn-xs okBtn">
+              确认
+            </button>
+            <button type="button" class="btn btn-primary btn-xs cancelBtn">
+              取消
+            </button>
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+		<!-- 分页 -->
+    <nav aria-label="Page navigation" class="dvPages">
+      <ul class="pagination box-page" id="pagination">
+        <li>
+          <a href="javascript:;" class="prev" aria-label="Previous">
+            <span class="prev" aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+    <!--    <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li> -->
+        <li id="next">
+          <a href="javascript:;" class="next" aria-label="Next">
+            <span class="next" aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <script src="../libs/tools.js"></script>
+    <script src="../js/admin-isLogin.js"></script>
+    <script src="../js/goods-info.js"></script>
+    <script src="../js/goods-edit.js "></script>
+  </body>
+</html>

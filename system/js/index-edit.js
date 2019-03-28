@@ -2,7 +2,6 @@ var tbody = document.querySelector("#tbody"),
 	info = JSON.parse(localStorage.getItem("shoppingCar")) || [],//每次进入重新获取localStorage
 	displayNum = document.querySelector("#number"),//购物车数字
 	table = document.querySelector("#table-box");
-	console.log(table);
 //点击事件委托，只能绑定一个事件
 tbody.onclick = function(e){
 	e = e || event;
@@ -22,16 +21,24 @@ tbody.onclick = function(e){
 			num : 1
 		};
 	//限制输入框的数量，不能超过，库存,同时若用户清空了，还应该恢复为0
+	//bug通过选中更换时，不会验证？？？？
+	//解决：在点击加入时验证
 	number.onblur = function(){
-		if(number.value > goodsnum){
+		/* if(number.value > goodsnum){
 			 number.value = goodsnum;
 			 alert("库存不够了！");
 		}
-		//恢复为0
+    */
+		//删除输入框的数字，而又灭有输入时，则应该恢复到0
 		if(number.value == "") number.value = 0;
 	}
 	//购物车添加----------------------------------------------------------
 	if(target.className.includes("shoppingCar")){
+		//先判断是否超过库存
+		if(number.value > goodsnum){
+			 number.value = goodsnum;
+			 alert("库存不够了！");
+		}
 		//先获取判断是否有储存信息
 		if(info){
 			//存在，判断Id的是否相同，相同则数量加一，不相同就push进去
@@ -47,11 +54,15 @@ tbody.onclick = function(e){
 			}else{
 				//没有相同的，重新push进去
 				if(number.value) obj.num = number.value;
+				//解决输入框为0时，点击加入购物车
+				if(number.value == 0) obj.num = 1;
 				info.push(obj);
 			}
 		}else{
 			//解决用户先输入数量再加入购物车
 			if(number.value) obj.num = number.value;
+			//解决输入框为0时，点击加入购物车
+			if(number.value == 0) obj.num = 1;
 			info.push(obj);
 		}
 		//购物车的数量需要刷新

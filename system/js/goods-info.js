@@ -7,14 +7,18 @@ var nameInput = document.querySelector("#goodsName"),
 		totalPages,//从后台得到总共有几页
 		nextBtn = document.querySelector("#next"),
 		pagination = document.querySelector("#pagination"),
-		info = info = JSON.parse(localStorage.getItem("shoppingCar")) || [],
-		number = document.querySelector("#number");
-//购物车的数量显示在页面上,第一次加载时
-	number.innerHTML = info.length;		
-//先调用一次,得到第一次页面加载时的数据
-getGoodsInfo();
+		cookie = tools.cookie("admin");
+
+//登录了以后，页面才加载数据------------------------------------------------
+if(cookie){
+	//代表登陆了
+	getGoodsInfo();
+}else{
+	//代表没登录
+	document.body.innerHTML = "<h2 class='blank'><a href='admin-login.html'>请先登录，客官！</a></h2>";
+}
 function getGoodsInfo(){
-  tools.ajaxGet("api/v1/get-info.php",{index},function(res){
+  tools.ajaxGet("../api/v1/get-info.php",{index},function(res){
     var tbody = document.querySelector("#tbody");
     //得到商品信息
     var data = res.res_body.data;
@@ -28,9 +32,6 @@ function getGoodsInfo(){
         <td><span>${item.goodsprice}</span><input type="text" /></td>
         <td><span>${item.goodsnum}</span><input type="text" /></td>
         <td>
-					<button type="button" class="btn btn-success btn-xs shoppingCar">
-					  加入购物车
-					</button>
           <button type="button" class="btn btn-primary btn-xs editBtn">
             编辑
           </button>
@@ -47,7 +48,8 @@ function getGoodsInfo(){
       </tr>`;
     });
     tbody.innerHTML = str;//这种方法会覆盖因此不用每次重新生成时，需要删除上一次生成的
-		//分页动态插入
+		
+		//分页动态插入-----------------------------------------------------------
 		//先删除上一次的
 		Array.from(document.querySelectorAll(".page")).forEach(function(item){
 			item.remove();
@@ -60,7 +62,8 @@ function getGoodsInfo(){
 		}
   });
 };
-//添加商品
+
+//添加商品----------------------------------------------------------------------
 saveBtn.onclick = function(){
   var goodsname = nameInput.value,
       goodsprice = priceInput.value,
@@ -78,7 +81,8 @@ saveBtn.onclick = function(){
     }
   })
 }
-//分页切换点击事件，事件源不确定，采用事件委托
+
+//分页切换点击事件，事件源不确定，采用事件委托---------------------------------------------------
 pagination.onclick = function(e){
 	e = e || window.event;
 	var target = e.target || e.srcElement;

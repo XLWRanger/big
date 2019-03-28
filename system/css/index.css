@@ -23,19 +23,16 @@ tr td:first-child{
 }
 tr td{
 	width: 200px;
+	height: 40px;
 }
-tr td input,tr td .okBtn,tr td .cancelBtn{
-    display: none;
+tr td.qw{
+	position: relative;
 }
-tr.edit td input,tr.edit td .okBtn,tr.edit td .cancelBtn{
-    display: inline-block;
-}
-tr.edit td span,tr.edit td .editBtn,tr.edit td .delBtn{
-    display: none;
-}
-tr.edit td input{
+tr td input{
+	padding-left: 5px;
+	width: 40px;
 	height: 100%;
-	width: 150px;
+	display: inline-block;
 }
 /* 分页 */
 .dvPages{
@@ -58,4 +55,26 @@ tr.edit td input{
 	border-radius: 50%;
 	background: red;
 	font-size: 12px;
+}
+.reduce{
+	top: 5px;
+	left: 60px;
+	position: absolute;
+}
+.add{
+	top: 20px;
+	left: 60px;
+	position: absolute;
+}
+/* 未登录时的样式 */
+.blank{
+	font-size: 30px;
+	height: 30px;
+	width: 370px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
 }
